@@ -24,8 +24,8 @@ Follow these steps to set up the project environment.
 Open your terminal and clone the repository to your local machine:
 
 ```bash
-git clone <YOUR_REPOSITORY_URL_HERE>
-(Remember to replace <YOUR_REPOSITORY_URL_HERE> with your actual Git URL)
+git clone (https://github.com/ramansh18/cybernauts-backend.git)
+
 
 2. Navigate to the Project Directory
 Change your current directory to the newly cloned folder:
@@ -62,8 +62,7 @@ PORT=8080
 # Database Connection
 DATABASE_URL="mongodb+srv://user:password@cluster.mongodb.net/your-db-name"
 
-# Authentication
-JWT_SECRET="your_super_strong_secret_key"
+
 ⚡ Running the Application
 Once the installation is complete and your .env file is configured, you can start the development server:
 
