@@ -7,15 +7,17 @@ import hobbyRoutes from "./routes/hobbyRoutes";
 import friendshipRoutes from "./routes/friendshipRoutes";
 
 dotenv.config();
+const allowedOrigins: (string | RegExp)[] = [
+  process.env.FRONTEND_URL || '', // fallback empty string
+  'http://localhost:5173'
+];
 
-// CORS configuration
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL,       // deployed frontend
-    'http://localhost:5173'         // local dev
-  ],
+  origin: allowedOrigins,
   credentials: true
 }));
+
+
 
 // Routes
 app.use("/api/users", userRoutes);
