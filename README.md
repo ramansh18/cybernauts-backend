@@ -1,53 +1,64 @@
-Cybernauts Backend
+Cybernauts Backend 🚀
+This repository contains the backend source code for the Cybernauts project.
 
-This is the backend server for the Cybernauts project, built with Node.js, Express, TypeScript, and PostgreSQL.
+🛠️ Getting Started
+Follow these instructions to get a local copy of the project up and running on your machine for development and testing purposes.
 
-Setup & Run Locally
-1. Clone the repository
-git clone https://github.com/ramansh18/cybernauts-backend.git
+Prerequisites
+Make sure you have the following software installed on your system:
+
+Node.js (which includes npm)
+
+Git
+
+⚙️ Setup and Installation
+Follow these steps to set up the project environment.
+
+1. Clone the Repository
+Open your terminal and clone the repository to your local machine:
+
+Bash
+
+git clone <YOUR_REPOSITORY_URL_HERE>
+2. Navigate to the Project Directory
+Change your current directory to the newly cloned folder:
+
+Bash
+
 cd cybernauts-backend
+3. Install Dependencies
+Install all the required project dependencies using npm:
 
-2. Create .env file
+Bash
 
-Create a .env file in the root directory with the following environment variables:
-
-PORT=5000
-DATABASE_URL=postgres://username:password@host:port/dbname
-FRONTEND_URL=http://localhost:5173
-
-
-PORT → The port your server will run on (default 5000)
-
-DATABASE_URL → PostgreSQL connection string
-
-FRONTEND_URL → URL of the frontend for CORS
-
-⚠️ For deployed frontend, replace FRONTEND_URL with the Vercel URL.
-
-3. Install dependencies
 npm install
+4. Create Environment File
+You'll need to create a .env file to store your environment variables (like database credentials, API keys, etc.). A good practice is to copy the example file:
 
-4. Run the server in development
+Bash
+
+cp .env.example .env
+If .env.example does not exist, simply create a new file named .env in the root of the project.
+
+5. Add Environment Variables
+Open the .env file in your code editor and fill in the necessary values.
+
+Example (.env):
+
+Ini, TOML
+
+# Server Configuration
+PORT=8080
+
+# Database Connection
+DATABASE_URL="mongodb+srv://user:password@cluster.mongodb.net/your-db-name"
+
+# Authentication
+JWT_SECRET="your_super_strong_secret_key"
+⚡ Running the Application
+Once the installation is complete and your .env file is configured, you can start the development server:
+
+Bash
+
 npm run dev
-
-
-Starts server with hot-reloading (ts-node-dev)
-
-Server should be running at http://localhost:5000
-
-5. Build for production (optional)
-npm run build
-npm start
-
-
-Compiles TypeScript to dist/
-
-Starts the compiled JS server
-
-6. Notes
-
-Ensure your PostgreSQL database is running and accessible via DATABASE_URL.
-
-CORS is configured to allow requests from the frontend specified in FRONTEND_URL.
-
-Use npm test to run unit tests with Jest.
+The server should now be running and listening for requests (e.g., at http://localhost:8080).
