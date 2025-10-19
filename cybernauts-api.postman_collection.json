@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Cybernauts Backend API",
+    "_postman_id": "12345678-90ab-cdef-1234-567890abcdef",
+    "description": "Postman collection for Cybernauts backend APIs: Users, Hobbies, Friendships, Graph.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{BASE_URL}}/api/users", "host": ["{{BASE_URL}}"], "path": ["api","users"] }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "[{\"id\":\"1\",\"username\":\"Ramansh\",\"age\":25,\"hobbies\":[\"reading\"]}]"
+            }
+          ]
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{BASE_URL}}/api/users/:id", "host": ["{{BASE_URL}}"], "path": ["api","users",":id"] }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\"id\":\"1\",\"username\":\"Ramansh\",\"age\":25,\"hobbies\":[\"reading\"]}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\"error\":\"User not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"Ramansh\",\n  \"age\": 25,\n  \"hobbies\": [\"reading\",\"gaming\"]\n}" },
+            "url": { "raw": "{{BASE_URL}}/api/users", "host": ["{{BASE_URL}}"], "path": ["api","users"] }
+          },
+          "response": [
+            {
+              "name": "Created",
+              "status": "Created",
+              "code": 201,
+              "body": "{\"id\":\"1\",\"username\":\"Ramansh\",\"age\":25,\"hobbies\":[\"reading\"]}"
+            },
+            {
+              "name": "Bad Request",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\"error\":\"username and age are required\"}"
+            }
+          ]
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"Ramansh\",\n  \"age\": 26,\n  \"hobbies\": [\"gaming\"]\n}" },
+            "url": { "raw": "{{BASE_URL}}/api/users/:id", "host": ["{{BASE_URL}}"], "path": ["api","users",":id"] }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\"id\":\"1\",\"username\":\"Ramansh\",\"age\":26,\"hobbies\":[\"gaming\"]}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\"error\":\"User not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{BASE_URL}}/api/users/:id", "host": ["{{BASE_URL}}"], "path": ["api","users",":id"] }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\"message\":\"User deleted successfully\"}"
+            },
+            {
+              "name": "Conflict",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\"error\":\"Cannot delete user with active friends\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hobbies",
+      "item": [
+        {
+          "name": "Get All Hobbies",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{BASE_URL}}/api/hobbies", "host": ["{{BASE_URL}}"], "path": ["api","hobbies"] } },
+          "response": [
+            { "name": "Success", "status": "OK", "code": 200, "body": "[{\"id\":\"1\",\"name\":\"reading\"}]" }
+          ]
+        },
+        {
+          "name": "Create Hobby",
+          "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{ \"name\": \"reading\" }" }, "url": { "raw": "{{BASE_URL}}/api/hobbies", "host": ["{{BASE_URL}}"], "path": ["api","hobbies"] } },
+          "response": [
+            { "name": "Created", "status": "Created", "code": 201, "body": "{\"message\":\"Hobby added successfully.\",\"hobby\":{\"id\":\"1\",\"name\":\"reading\"}}" }
+          ]
+        },
+        {
+          "name": "Add Hobby to User",
+          "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" } ], "body": { "mode": "raw", "raw": "{ \"hobbyId\": \"1\" }" }, "url": { "raw": "{{BASE_URL}}/api/hobbies/:userId", "host": ["{{BASE_URL}}"], "path": ["api","hobbies",":userId"] } },
+          "response": [
+            { "name": "Created", "status": "Created", "code": 201, "body": "{\"message\":\"Hobby added successfully for the user.\"}" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Friendships",
+      "item": [
+        {
+          "name": "Get All Friendships",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{BASE_URL}}/api/friendships", "host": ["{{BASE_URL}}"], "path": ["api","friendships"] } },
+          "response": [
+            { "name": "Success", "status": "OK", "code": 200, "body": "[{\"userId\":\"1\",\"friendId\":\"2\"}]" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Graph",
+      "item": [
+        {
+          "name": "Get Graph",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{BASE_URL}}/api/graph", "host": ["{{BASE_URL}}"], "path": ["api","graph"] } },
+          "response": [
+            { "name": "Success", "status": "OK", "code": 200, "body": "{\"nodes\":[{\"id\":\"1\",\"label\":\"Ramansh\",\"age\":25,\"popularityScore\":6,\"hobbies\":[\"reading\"],\"type\":\"highScoreNode\"}],\"edges\":[{\"id\":\"1_2\",\"source\":\"1\",\"target\":\"2\"}]}" }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "BASE_URL", "value": "http://localhost:5000" }
+  ]
+}
